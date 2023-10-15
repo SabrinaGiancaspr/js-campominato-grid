@@ -20,13 +20,28 @@ playBtnElement.addEventListener('click', function () {
   //per svuotare la griglia dalle celle create in precedenza 
   gridElement.innerHTML = ''
 
+  //difficoltà
+  //recupero il select dal DOM
+  const selectedDifficulty = document.getElementById('difficulty').value;
+  let cols, maxNumber;
+
+  //se la difficoltà è uguale a 1 allora 10 colonne e 100 numeri
+  if (selectedDifficulty === '1') {
+    cols = 10;
+    maxNumber = 100;
+  } else if (selectedDifficulty === '2') {  //se è 2 9 colonne e 81 numeri
+    cols = 9;
+    maxNumber = 81;
+  } else if (selectedDifficulty === '3') { //se è 3  7 colonne  e 49 numeri
+    cols = 7;
+    maxNumber = 49;
+  }
   // -creo un ciclo for per creare 100 cell 
-  for (let i = 0; i < 100; i++) {
-    const n = i + 1;
-    console.log(n);
+  for (let i = 1; i <= maxNumber; i++) {
+    console.log(i);
 
     // -dentro il mio ciclo for creo template literal
-    const htmlCell = `<div class="cell">${n}</div>`
+    const htmlCell = `<div class="cell">${i}</div>`
     // console.log (htmlCell);
 
     // -aggiungere le mie Cell dentro la griglia
@@ -39,10 +54,16 @@ playBtnElement.addEventListener('click', function () {
     // -dichiarare la cell corrente [i]
     const currentCellElement = cellDomElements[i];
     currentCellElement.addEventListener('click', function () {
-      console.log('la casella cliccata è la numero: ');
+      console.log('la casella cliccata è la numero: ' + currentCellElement.innerHTML);
+
+      currentCellElement.classList.add('bg-green');
+
     })
   }
 })
+
+
+
 
 
 
